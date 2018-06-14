@@ -75,13 +75,12 @@ def get_menu_tree(driver):
     with open('tree', 'rb') as tf:
       return pickle.load(tf)
   else:
-    print('Cataloging service articles... this will take ~10 mins. Please keep '
-          'the chrome browser window VISIBLE until the menu stops expanding.')
+    print('Cataloging service articles - this will take ~10 mins...')
     expand_menu_tree(driver)
     t = scrape_menu_tree(driver)
     with open('tree', 'wb') as tf:
       pickle.dump(t, tf)
-    print('Catalogue made and cached to disk. Starting downloads.')
+    print('Catalogue made and cached to disk. Starting downloads...')
     return t
 
 
@@ -116,7 +115,7 @@ def pdf_has_data(path):
     text = doc.getPage(0).extractText()
     pattern = re.compile('\nid.{12}\n')
     matches = re.findall(pattern, text)
-    if matches:
+    if matches or 'Mazda North American Operations' in text:
       return True
   except:
     pass
@@ -147,7 +146,7 @@ def try_download(article_to_download):
         if os.path.exists(save_path):
           os.remove(save_path)
         continue
-    except Exception as e:
+    except Exception:
       continue
   return False
 
@@ -171,13 +170,13 @@ def download_all(article_dict):
 
 
 options = Options()
-# options.add_argument('-headless')
+options.add_argument('-headless')
 chrome = webdriver.Chrome(chrome_options=options)
 chrome.implicitly_wait(5)
 
 login_to_service_portal(chrome)
 chrome.get(base_url)
-time.sleep(4)
+time.sleep(4.5)
 all_articles = get_menu_tree(chrome)
 num_articles = len(all_articles)
 requests_session = get_authenticated_requests_session(chrome)
