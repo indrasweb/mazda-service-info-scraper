@@ -8,7 +8,7 @@ Script to scrape service manuals from http://mazdaserviceinfo.com/
 4. Login to the service portal, go to the view-content tab, select the car you want the manual for and click go. This will change your window url. Copy this url set it as `base_url` in the script.
 5. `python3 -u scrape.py > out.log &` / `nohup python3 -u scrape.py > out.log &` if running on a server
 
-Downloading a manual takes about 5 hours. The service portal is pretty temperamental, so expect downloads to fail. You should be able to just keep re-running the script and it will keep trying to download any articles it hasn't managed to get yet.
+Downloading a manual takes about 5 hours. The service portal is pretty unreliable, so expect downloads to fail. You should be able to just keep re-running the script and it will keep trying to download any articles it hasn't managed to get yet.
 
 Most manuals will have a few articles that it can’t download at all due to the article being a link to a PDF elsewhere - get these manually (look in articles_to_manually_download.txt after the script terminates).
 
