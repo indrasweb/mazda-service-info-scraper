@@ -2,7 +2,7 @@
 
 Script to scrape service manuals from http://mazdaserviceinfo.com/
 
-1. Pay for 24hr access to http://mazdaserviceinfo.com/
+1. Pay for 24hr access to http://mazdaserviceinfo.com/ [ESI]
 2. Download the script and install dependencies (pip install selenium, brew install chromedriver, pip install PyPDF2)
 3. Replace the `username` and `password` variables with your own credentials
 4. Login to the service portal, go to the view-content tab, select the car you want the manual for and click go. This will change your window url. Copy this url set it as `base_url` in the script.
