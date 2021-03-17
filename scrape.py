@@ -19,21 +19,32 @@ base_url = 'http://am.mazdaserviceinfo.com/mazdagms3/index?page=contentresult&vi
 
 
 def login_to_service_portal(driver):
-  driver.get('https://www.mazdaserviceinfo.com/Account/Login.aspx')
-  driver.find_element_by_xpath('//*[@id="MainContent_LoginUser_UserName"]').send_keys(username)
-  driver.find_element_by_xpath('//*[@id="MainContent_LoginUser_Password"]').send_keys(password)
-  driver.find_element_by_xpath('//*[@id="MainContent_LoginUser_LoginButton"]').click()
-  time.sleep(2)
+  driver.get('https://www.mazdaserviceinfo.com/login')
+  # Choose region pop-up
   try:
-    driver.find_element_by_xpath('//*[@id="btnOk"]').click()
+    driver.find_element_by_xpath("//button[@class='delete']").click()
   except:
     pass
-  driver.find_element_by_xpath('//*[@id="NavigationMenu"]/ul/li[1]/a').click()
+
+  driver.find_element_by_xpath('//*[@id="username"]').send_keys(username)
+  driver.find_element_by_xpath('//*[@id="password"]').send_keys(password)
+  driver.find_element_by_xpath("//button[contains(text(),'Submit')]").click()
   time.sleep(2)
+
+  # Session already active pop-up
+  try:
+    driver.find_element_by_xpath("//button[contains(text(),'OK')]").click()
+  except:
+    pass
+
+  # Open ESI page
+  driver.find_element_by_xpath("//span[contains(text(),'Electronic Service Information')]").click()
+  driver.find_element_by_xpath("//button[contains(text(),'Open Electronic Service Information')]").click()
+  time.sleep(2)
+
   driver.switch_to_window(driver.window_handles[1])
   driver.close()
   driver.switch_to_window(driver.window_handles[0])
-
 
 def expand_menu_tree(driver):
   ids = []
