@@ -14,7 +14,7 @@ from selenium.webdriver.common.by import By
 
 username = 'email@website.com'
 password = 'password'
-base_url =  'https://am.mazdaserviceinfo.com/mazdagms3/index?page=<use the dropdown>'
+base_url = 'https://am.mazdaserviceinfo.com/mazdagms3/index?page=<use the dropdown>'
 
 
 def login_to_service_portal(driver):
