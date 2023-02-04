@@ -137,8 +137,8 @@ def report_progress():
 def try_download(article_to_download):
     for _attempt in range(5):
         try:
-            pdf_url = 'http://am.mazdaserviceinfo.com/mazdagms3/' \
-                      'ExecutePDF?id={}'.format(article_to_download[-1]['id'])
+            pdf_url = 'https://am.mazdaserviceinfo.com/mazdagms3/' \
+                      'ExecutePDF?id={}&itextpdf=yes'.format(article_to_download[-1]['id'])
             save_path = parse_path_and_create_directory(article_to_download[:])
             raw = requests_session.get(pdf_url)
             with open(save_path, 'wb') as f:
