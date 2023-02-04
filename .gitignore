@@ -1,0 +1,5 @@
+.venv/
+MANUAL/
+tree
+out.log
+articles_to_manually_download.txt
